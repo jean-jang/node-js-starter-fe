@@ -8,7 +8,7 @@ const TodoItem = ({ item, onComplete, onDelete }) => {
         <div className={`todo-item ${item.isCompleted ? "completed" : ""}`}>
           <div className="todo-content">{item.task}</div>
 
-          <div>
+          <div className="button-content">
             <button
               className="button-delete"
               onClick={() => onDelete(item._id)}

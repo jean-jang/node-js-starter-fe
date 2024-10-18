@@ -30,6 +30,8 @@ body {
 .input-box:focus {
   outline: none;
 }
+
+.button,
 .button-add {
   height: 40px;
   width: 100%;
@@ -59,4 +61,10 @@ body {
 .todo-item.completed .todo-content {
   color: gray;
   text-decoration: line-through;
+}
+
+.button-content {
+  display: flex;
+  flex-direction: row;
+  white-space: nowrap;
 }
