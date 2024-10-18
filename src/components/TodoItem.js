@@ -10,7 +10,7 @@ const TodoItem = ({ item }) => {
 
           <div>
             <button className="button-delete">삭제</button>
-            <button className="button-delete">끝남</button>
+            <button className="button-delete">완료</button>
           </div>
         </div>
       </Col>

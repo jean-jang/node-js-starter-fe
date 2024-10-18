@@ -2,7 +2,7 @@ import TodoItem from "./TodoItem";
 import React from "react";
 
 const TodoBoard = ({ todoList }) => {
-  console.log(todoList);
+  // console.log(todoList);
 
   if (!todoList || todoList.length === 0) {
     return <h2>There is no Item to show</h2>;
