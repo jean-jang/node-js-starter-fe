@@ -3,6 +3,11 @@ body {
   background-color: aliceblue !important;
 }
 
+.title {
+  text-align: center;
+  margin-top: 50px;
+}
+
 .todo-item {
   border: 1px solid lightblue;
   background-color: white;
@@ -37,18 +42,21 @@ body {
   color: lightblue;
   border: 2px solid lightblue;
 }
-.button-delete {
+.button-delete,
+.button-complete {
   background-color: white;
   border: 2px solid lightblue;
   color: lightblue;
   margin: 10px;
 }
-.button-delete:hover {
+
+.button-delete:hover,
+.button-complete:hover {
   background-color: lightblue;
   color: #ffffff;
 }
 
-.item-complete {
-  background-color: gainsboro;
-  color: white;
+.todo-item.completed .todo-content {
+  color: gray;
+  text-decoration: line-through;
 }

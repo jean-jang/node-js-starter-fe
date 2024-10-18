@@ -1,7 +1,7 @@
-import TodoItem from "./TodoItem";
 import React from "react";
+import TodoItem from "./TodoItem";
 
-const TodoBoard = ({ todoList }) => {
+const TodoBoard = ({ todoList, onComplete, onDelete }) => {
   // console.log(todoList);
 
   if (!todoList || todoList.length === 0) {
@@ -10,9 +10,13 @@ const TodoBoard = ({ todoList }) => {
 
   return (
     <div>
-      <h2>Todo List</h2>
       {todoList.map((item, index) => (
-        <TodoItem key={index} item={item} />
+        <TodoItem
+          key={index}
+          item={item}
+          onComplete={onComplete}
+          onDelete={onDelete}
+        />
       ))}
     </div>
   );
