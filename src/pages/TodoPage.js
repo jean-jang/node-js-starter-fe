@@ -103,7 +103,9 @@ const TodoPage = () => {
 
       <Row className="logout-row">
         <Col xs={12}>
-          <span onClick={handleLogout}>Logout</span>
+          <span onClick={handleLogout} style={{ fontWeight: "bold" }}>
+            Logout
+          </span>
         </Col>
       </Row>
     </Container>
