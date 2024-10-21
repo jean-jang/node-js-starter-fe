@@ -11,8 +11,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Navigate to="/task" />} />
-        <Route path="/task" element={<TodoPage />} />
+        <Route path="/" element={<TodoPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
       </Routes>
