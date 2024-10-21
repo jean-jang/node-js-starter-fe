@@ -5,7 +5,6 @@ import TodoPage from "./pages/TodoPage.js";
 import RegisterPage from "./pages/RegisterPage.js";
 import LoginPage from "./pages/LoginPage.js";
 import React from "react";
-import { Navigate } from "react-router-dom";
 
 function App() {
   return (
