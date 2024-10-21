@@ -32,7 +32,7 @@ const LoginPage = () => {
       setUser(response.data.user);
 
       api.defaults.headers["authorization"] = `Bearer ${token}`;
-      navigate("/task");
+      navigate("/");
     } catch (error) {
       console.error("Login failed.", error);
       const errorMessage =
