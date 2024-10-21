@@ -5,11 +5,13 @@ import TodoPage from "./pages/TodoPage.js";
 import RegisterPage from "./pages/RegisterPage.js";
 import LoginPage from "./pages/LoginPage.js";
 import React from "react";
+import { Navigate } from "react-router-dom";
 
 function App() {
   return (
     <Router>
       <Routes>
+        <Route path="/" element={<Navigate to="/task" />} />
         <Route path="/task" element={<TodoPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
