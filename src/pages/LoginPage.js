@@ -35,7 +35,7 @@ const LoginPage = ({ setUser, user }) => {
       navigate("/");
     } catch (error) {
       console.error("Login failed.", error);
-      const errorMessage = error.message;
+      const errorMessage = error.message || "Incorrect email or password";
       setError(errorMessage);
     }
   };

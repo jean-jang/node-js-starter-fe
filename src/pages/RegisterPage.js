@@ -34,7 +34,7 @@ const RegisterPage = () => {
       navigate("/login");
     } catch (error) {
       console.error("Registration failed.", error);
-      const errorMessage = error.message;
+      const errorMessage = error.message || "This account already in use";
       setError(errorMessage);
     }
   };
