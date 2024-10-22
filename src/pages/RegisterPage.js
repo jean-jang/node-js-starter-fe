@@ -3,6 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import api from "../utils/api";
+import { Stack } from "react-bootstrap";
 
 const RegisterPage = () => {
   const [formData, setFormData] = useState({
@@ -41,64 +42,64 @@ const RegisterPage = () => {
 
   return (
     <div className="display-center">
-      <Form className="login-box" onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit} className="w-100">
         <h1>Join</h1>
         {error && <p style={{ color: "red" }}>{error}</p>}
-        <Form.Group className="mb-3" controlId="formUserName">
-          <Form.Label>Username</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Username"
-            name="username"
-            value={formData.username}
-            onChange={handleChange}
-            autoComplete="username"
-          />
-        </Form.Group>
+        <Stack gap={2}>
+          <Form.Group controlId="formUserName">
+            <Form.Label>Username</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Username"
+              name="username"
+              value={formData.username}
+              onChange={handleChange}
+              autoComplete="username"
+            />
+          </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Email address</Form.Label>
-          <Form.Control
-            type="email"
-            placeholder="Email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            autoComplete="email"
-          />
-        </Form.Group>
+          <Form.Group controlId="formBasicEmail">
+            <Form.Label>Email address</Form.Label>
+            <Form.Control
+              type="email"
+              placeholder="Email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              autoComplete="email"
+            />
+          </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type="password"
-            placeholder="Set password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            autoComplete="new-password"
-          />
-        </Form.Group>
+          <Form.Group controlId="formBasicPassword">
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              type="password"
+              placeholder="Set password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              autoComplete="new-password"
+            />
+          </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formBasicPasswordConfirm">
-          <Form.Label>Confirm Password</Form.Label>
-          <Form.Control
-            type="password"
-            placeholder="Confirm password..."
-            name="confirmPassword"
-            value={formData.confirmPassword}
-            onChange={handleChange}
-            autoComplete="new-password"
-          />
-        </Form.Group>
-        <div className="button-box">
-          <Button className="button-primary" type="submit">
-            Join
-          </Button>
+          <Form.Group controlId="formBasicPasswordConfirm">
+            <Form.Label>Confirm Password</Form.Label>
+            <Form.Control
+              type="password"
+              placeholder="Confirm password"
+              name="confirmPassword"
+              value={formData.confirmPassword}
+              onChange={handleChange}
+              autoComplete="new-password"
+            />
+          </Form.Group>
+        </Stack>
+        <Stack gap={3} className="mt-3">
+          <Button type="submit">Join</Button>
           <span>
             Have an account? <Link to="/login">Login&rarr;</Link>
           </span>
-        </div>
+        </Stack>
       </Form>
     </div>
   );

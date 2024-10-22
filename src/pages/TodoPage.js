@@ -100,14 +100,14 @@ const TodoPage = () => {
         onComplete={completeTask}
         onDelete={deleteTask}
       />
-
+      {/* 
       <Row className="logout-row">
         <Col xs={12}>
           <span onClick={handleLogout} style={{ fontWeight: "bold" }}>
             Logout
           </span>
         </Col>
-      </Row>
+      </Row> */}
     </Container>
   );
 };

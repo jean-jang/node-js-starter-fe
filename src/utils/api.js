@@ -1,9 +1,12 @@
 import axios from "axios";
 
+const storedToken = sessionStorage.getItem("authToken");
+
 const api = axios.create({
   baseURL: `${process.env.REACT_APP_BACKEND_URL}/api`,
   headers: {
     "Content-Type": "application/json",
+    authorization: `Bearer ${storedToken} ` ? `Bearer ${storedToken}` : "",
   },
 });
 /**

@@ -1,6 +1,10 @@
-body {
+/* body {
   color: lightblue !important ;
   background-color: aliceblue !important;
+} */
+
+body {
+  padding: 0% 8%;
 }
 
 .title {
@@ -69,17 +73,6 @@ body {
   white-space: nowrap;
 }
 
-.login-box {
-  border: 1px solid lightblue;
-  max-width: 600px;
-  width: 100%;
-  background-color: white;
-  padding: 20px;
-}
-.login-box label {
-  font-weight: 700;
-}
-
 .display-center {
   display: flex;
   flex-direction: column;
@@ -88,23 +81,17 @@ body {
   height: 100vh;
 }
 
-.button-box {
-  display: flex;
-  justify-content: space-between;
-}
-
-.button-primary {
+/* .button-primary {
   background-color: lightblue;
   color: #ffffff;
   border: none;
-}
+} */
 
-.logout-row {
+/* .logout-row {
   display: flex;
   justify-content: flex-end;
-  margin-top: 20px;
 }
 .logout-row:hover {
   color: white;
   cursor: pointer;
-}
+} */

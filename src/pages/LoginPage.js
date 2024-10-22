@@ -1,18 +1,18 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { Link } from "react-router-dom";
+import { Stack } from "react-bootstrap";
 import api from "../utils/api";
+import { Navigate } from "react-router-dom";
 
-const LoginPage = () => {
+const LoginPage = ({ setUser, user }) => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
 
   const [error, setError] = useState("");
-  const [user, setUser] = useState(null);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -41,42 +41,57 @@ const LoginPage = () => {
     }
   };
 
+  if (user) {
+    return <Navigate to="/" replace={true} />;
+  }
+
   return (
     <div className="display-center">
-      <Form className="login-box" onSubmit={handleLogin}>
+      <Form onSubmit={handleLogin} className="w-100">
         <h1>Log In</h1>
         {error && <p style={{ color: "red" }}>{error}</p>}
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Email address</Form.Label>
-          <Form.Control
-            type="email"
-            placeholder="Email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            autoComplete="email"
-          />
-        </Form.Group>
+        <Stack gap={2}>
+          <Form.Group controlId="formBasicEmail">
+            <Form.Label>Email address</Form.Label>
+            <Form.Control
+              type="email"
+              placeholder="Email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              autoComplete="email"
+            />
+          </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type="password"
-            placeholder="Password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            autoComplete="current-password"
-          />
-        </Form.Group>
-        <div className="button-box">
-          <Button type="submit" className="button-primary">
+          <Form.Group controlId="formBasicPassword">
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              type="password"
+              placeholder="Password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              autoComplete="current-password"
+            />
+          </Form.Group>
+        </Stack>
+
+        <Stack gap={2} className="mt-3">
+          <Button type="submit" variant="primary">
             Login
           </Button>
+          <Button
+            variant="outline-primary"
+            onClick={() => navigate("/forgot-password")}
+            className="rounded-pill"
+          >
+            Github
+          </Button>
+
           <span>
             Don't have an account? <Link to="/register">Create one&rarr; </Link>
           </span>
-        </div>
+        </Stack>
       </Form>
     </div>
   );
