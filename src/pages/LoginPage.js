@@ -35,8 +35,7 @@ const LoginPage = ({ setUser, user }) => {
       navigate("/");
     } catch (error) {
       console.error("Login failed.", error);
-      const errorMessage =
-        error.response?.data?.message || "Please check your credentials.";
+      const errorMessage = error.message;
       setError(errorMessage);
     }
   };
@@ -49,11 +48,12 @@ const LoginPage = ({ setUser, user }) => {
     <div className="display-center">
       <Form onSubmit={handleLogin} className="w-100">
         <h1>Log In</h1>
-        {error && <p style={{ color: "red" }}>{error}</p>}
+
         <Stack gap={2}>
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Email address</Form.Label>
             <Form.Control
+              required
               type="email"
               placeholder="Email"
               name="email"
@@ -66,6 +66,7 @@ const LoginPage = ({ setUser, user }) => {
           <Form.Group controlId="formBasicPassword">
             <Form.Label>Password</Form.Label>
             <Form.Control
+              required
               type="password"
               placeholder="Password"
               name="password"
@@ -74,19 +75,20 @@ const LoginPage = ({ setUser, user }) => {
               autoComplete="current-password"
             />
           </Form.Group>
+          {error && <p style={{ color: "red" }}>{error}</p>}
         </Stack>
 
         <Stack gap={2} className="mt-3">
           <Button type="submit" variant="primary">
             Login
           </Button>
-          <Button
+          {/* <Button
             variant="outline-primary"
             onClick={() => navigate("/forgot-password")}
             className="rounded-pill"
           >
             Github
-          </Button>
+          </Button> */}
 
           <span>
             Don't have an account? <Link to="/register">Create one&rarr; </Link>

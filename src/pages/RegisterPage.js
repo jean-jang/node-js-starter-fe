@@ -24,7 +24,7 @@ const RegisterPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (formData.password !== formData.confirmPassword) {
-      setError("Password confirmation failed.");
+      setError("Make sure both passwords are the same");
       return;
     }
     try {
@@ -34,8 +34,7 @@ const RegisterPage = () => {
       navigate("/login");
     } catch (error) {
       console.error("Registration failed.", error);
-      const errorMessage =
-        error.response?.data?.message || "Failed to create account.";
+      const errorMessage = error.message;
       setError(errorMessage);
     }
   };
@@ -44,11 +43,12 @@ const RegisterPage = () => {
     <div className="display-center">
       <Form onSubmit={handleSubmit} className="w-100">
         <h1>Join</h1>
-        {error && <p style={{ color: "red" }}>{error}</p>}
+
         <Stack gap={2}>
           <Form.Group controlId="formUserName">
             <Form.Label>Username</Form.Label>
             <Form.Control
+              required
               type="text"
               placeholder="Username"
               name="username"
@@ -61,6 +61,7 @@ const RegisterPage = () => {
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Email address</Form.Label>
             <Form.Control
+              required
               type="email"
               placeholder="Email"
               name="email"
@@ -73,6 +74,7 @@ const RegisterPage = () => {
           <Form.Group controlId="formBasicPassword">
             <Form.Label>Password</Form.Label>
             <Form.Control
+              required
               type="password"
               placeholder="Set password"
               name="password"
@@ -85,14 +87,17 @@ const RegisterPage = () => {
           <Form.Group controlId="formBasicPasswordConfirm">
             <Form.Label>Confirm Password</Form.Label>
             <Form.Control
+              required
               type="password"
               placeholder="Confirm password"
               name="confirmPassword"
               value={formData.confirmPassword}
               onChange={handleChange}
               autoComplete="new-password"
+              isInvalid={formData.password !== formData.confirmPassword}
             />
           </Form.Group>
+          {error && <p style={{ color: "red" }}>{error}</p>}
         </Stack>
         <Stack gap={3} className="mt-3">
           <Button type="submit">Join</Button>
