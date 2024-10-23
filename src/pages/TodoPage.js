@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import api from "../utils/api";
 import TodoBoard from "../components/TodoBoard";
-import { Container, Row, Col } from "react-bootstrap";
-import { Button } from "react-bootstrap";
+import { Stack, Form, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 const TodoPage = ({ setUser }) => {
@@ -20,18 +19,18 @@ const TodoPage = ({ setUser }) => {
     }
   };
 
-  const addTask = async () => {
+  const addTask = async (e) => {
+    e.preventDefault();
+    if (!todoValue.trim()) return;
+
     try {
       const response = await api.post("/task", {
         task: todoValue,
         isCompleted: false,
       });
       if (response.status === 200) {
-        console.log("Task added successfully.");
         setTodoValue("");
         getTodoList();
-      } else {
-        throw new Error("Failed to add task.");
       }
     } catch (error) {
       console.error("An error occurred", error);
@@ -44,10 +43,7 @@ const TodoPage = ({ setUser }) => {
         isCompleted: isCompleted,
       });
       if (response.status === 200) {
-        console.log("Task status updated successfully.");
         getTodoList();
-      } else {
-        throw new Error("Failed to update task status.");
       }
     } catch (error) {
       console.error("An error occurred", error);
@@ -79,38 +75,37 @@ const TodoPage = ({ setUser }) => {
   }, []);
 
   return (
-    <Container>
-      <Row className="add-item-row">
-        <Col xs={12} sm={10}>
-          <input
-            type="text"
-            placeholder="할일을 입력하세요"
-            className="input-box"
-            value={todoValue}
-            onChange={(e) => setTodoValue(e.target.value)}
+    <div className="display-center">
+      <div className="w-100">
+        <Stack gap={4}>
+          <h1>Todo List</h1>
+
+          <Form onSubmit={addTask}>
+            <Stack direction="horizontal" gap={2}>
+              <Form.Control
+                type="text"
+                placeholder="할일을 입력하세요"
+                value={todoValue}
+                onChange={(e) => setTodoValue(e.target.value)}
+              />
+              <Button type="submit">+</Button>
+            </Stack>
+          </Form>
+
+          <TodoBoard
+            todoList={todoList}
+            onComplete={completeTask}
+            onDelete={deleteTask}
           />
-        </Col>
-        <Col xs={12} sm={2}>
-          <button className="button-add" onClick={addTask}>
-            추가
-          </button>
-        </Col>
-      </Row>
 
-      <TodoBoard
-        todoList={todoList}
-        onComplete={completeTask}
-        onDelete={deleteTask}
-      />
-
-      <Row className="logout-row">
-        <Col xs={12}>
-          <Button onClick={handleLogout} className="button-logout">
-            Logout
-          </Button>
-        </Col>
-      </Row>
-    </Container>
+          <div className="text-end">
+            <Button variant="secondary" onClick={handleLogout}>
+              Logout
+            </Button>
+          </div>
+        </Stack>
+      </div>
+    </div>
   );
 };
 

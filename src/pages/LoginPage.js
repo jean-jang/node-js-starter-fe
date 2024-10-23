@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
-import { Stack } from "react-bootstrap";
+import { Button, Form, Stack, InputGroup } from "react-bootstrap";
+import { Mail, Lock } from "lucide-react";
 import api from "../utils/api";
 import { Navigate } from "react-router-dom";
 
@@ -20,7 +19,7 @@ const LoginPage = ({ setUser, user }) => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleLogin = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await api.post("/user/login", formData);
@@ -46,52 +45,51 @@ const LoginPage = ({ setUser, user }) => {
 
   return (
     <div className="display-center">
-      <Form onSubmit={handleLogin} className="w-100">
-        <h1>Log In</h1>
+      <Form onSubmit={handleSubmit} className="w-100">
+        <h1>Login</h1>
 
         <Stack gap={2}>
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Email address</Form.Label>
-            <Form.Control
-              required
-              type="email"
-              placeholder="Email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              autoComplete="email"
-            />
+            <InputGroup>
+              <InputGroup.Text>
+                <Mail size={15} />
+              </InputGroup.Text>
+              <Form.Control
+                required
+                type="email"
+                placeholder="Email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                autoComplete="email"
+              />
+            </InputGroup>
           </Form.Group>
 
           <Form.Group controlId="formBasicPassword">
             <Form.Label>Password</Form.Label>
-            <Form.Control
-              required
-              type="password"
-              placeholder="Password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              autoComplete="current-password"
-            />
+            <InputGroup>
+              <InputGroup.Text>
+                <Lock size={15} />
+              </InputGroup.Text>
+              <Form.Control
+                required
+                type="password"
+                placeholder="Password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                autoComplete="current-password"
+              />
+            </InputGroup>
           </Form.Group>
-          {error && <p style={{ color: "red" }}>{error}</p>}
+          {error && <p className="text-danger">{error}</p>}
         </Stack>
-
-        <Stack gap={2} className="mt-3">
-          <Button type="submit" variant="primary">
-            Login
-          </Button>
-          {/* <Button
-            variant="outline-primary"
-            onClick={() => navigate("/forgot-password")}
-            className="rounded-pill"
-          >
-            Github
-          </Button> */}
-
+        <Stack gap={3} className="mt-3">
+          <Button type="submit">Login</Button>
           <span>
-            Don't have an account? <Link to="/register">Create one&rarr; </Link>
+            Need an account? <Link to="/register">Register&rarr;</Link>
           </span>
         </Stack>
       </Form>

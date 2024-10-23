@@ -1,24 +1,27 @@
 import React from "react";
 import TodoItem from "./TodoItem";
+import { Stack } from "react-bootstrap";
 
 const TodoBoard = ({ todoList, onComplete, onDelete }) => {
-  // console.log(todoList);
-
   if (!todoList || todoList.length === 0) {
-    return <h2>There is no Item to show</h2>;
+    return (
+      <div className="text-center text-muted my-4">
+        <h2>There is no list to show</h2>
+      </div>
+    );
   }
 
   return (
-    <div>
-      {todoList.map((item, index) => (
+    <Stack gap={2}>
+      {todoList.map((item) => (
         <TodoItem
-          key={index}
+          key={item._id}
           item={item}
           onComplete={onComplete}
           onDelete={onDelete}
         />
       ))}
-    </div>
+    </Stack>
   );
 };
 
