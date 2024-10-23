@@ -33,7 +33,9 @@ function App() {
   }, []);
 
   return isLoading ? (
-    <div>Loading...</div>
+    <div className="display-center text-muted">
+      <h2>Loading...</h2>
+    </div>
   ) : (
     <Router>
       <Routes>

@@ -6,14 +6,14 @@ const TodoBoard = ({ todoList, onComplete, onDelete }) => {
   if (!todoList || todoList.length === 0) {
     return (
       <div className="text-center text-muted my-4">
-        <h2>There is no list to show</h2>
+        <h6>Add your list...</h6>
       </div>
     );
   }
 
   return (
     <Stack gap={2}>
-      {todoList.map((item) => (
+      {todoList.map((item, index) => (
         <TodoItem
           key={item._id}
           item={item}
