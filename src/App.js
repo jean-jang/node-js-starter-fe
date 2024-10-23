@@ -41,7 +41,7 @@ function App() {
           path="/"
           element={
             <ProtectedRoute user={user}>
-              <TodoPage />
+              <TodoPage setUser={setUser} />
             </ProtectedRoute>
           }
         />

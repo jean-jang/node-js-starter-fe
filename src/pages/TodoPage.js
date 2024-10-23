@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 import api from "../utils/api";
 import TodoBoard from "../components/TodoBoard";
 import { Container, Row, Col } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
-const TodoPage = () => {
+const TodoPage = ({ setUser }) => {
   const [todoList, setTodoList] = useState([]);
   const [todoValue, setTodoValue] = useState("");
   const navigate = useNavigate();
@@ -69,6 +70,7 @@ const TodoPage = () => {
 
   const handleLogout = () => {
     sessionStorage.removeItem("authToken");
+    setUser(null);
     navigate("/login");
   };
 
@@ -100,14 +102,14 @@ const TodoPage = () => {
         onComplete={completeTask}
         onDelete={deleteTask}
       />
-      {/* 
+
       <Row className="logout-row">
         <Col xs={12}>
-          <span onClick={handleLogout} style={{ fontWeight: "bold" }}>
+          <Button onClick={handleLogout} className="button-logout">
             Logout
-          </span>
+          </Button>
         </Col>
-      </Row> */}
+      </Row>
     </Container>
   );
 };
